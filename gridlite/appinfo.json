@@ -1,0 +1,28 @@
+{
+  "uuid": "9ecff105-4d6b-4ebb-b1e5-04de548b18b0",
+  "shortName": "Grid Lite",
+  "longName": "Grid Watchface Lite",
+  "companyName": "Pebble Technology",
+  "versionCode": 1,
+  "versionLabel": "1.0.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": [
+      {
+        "type": "font",
+        "name": "FONT_SCIFLY_47",
+        "file": "fonts/SciFly-Sans-47.ttf"
+      },
+    {
+      "menuIcon": true,
+      "type":"png",
+      "name":"IMAGE_MENU_ICON",
+      "file":"images/grid_logo.png"
+    }]
+  }
+}
