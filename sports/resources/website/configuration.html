@@ -1,0 +1,205 @@
+
+<html>
+ <head>
+  <title>Sports</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css" />
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
+ </head>
+ <body>
+ <div data-role="page" id="main">
+      <div data-role="header" class="jqm-header">
+        <h1>Sports</h1>
+      </div>
+
+        <div data-role="fieldcontain">
+          <fieldset data-role="controlgroup">
+            <legend>Choose feeds to follow:</legend>
+            <input type="checkbox" name="checkbox-top" id="checkbox-top" class="custom" />
+            <label for="checkbox-top">Top</label>
+
+            <input type="checkbox" name="checkbox-mlb" id="checkbox-mlb" class="custom" />
+            <label for="checkbox-mlb">MLB</label>
+            
+            <input type="checkbox" name="checkbox-nfl" id="checkbox-nfl" class="custom" />
+            <label for="checkbox-nfl">NFL</label>
+
+            <input type="checkbox" name="checkbox-nba" id="checkbox-nba" class="custom" />
+            <label for="checkbox-nba">NBA</label>
+
+            <input type="checkbox" name="checkbox-nhl" id="checkbox-nhl" class="custom" />
+            <label for="checkbox-nhl">NHL</label>
+            
+            <input type="checkbox" name="checkbox-nascar" id="checkbox-nascar" class="custom" />
+            <label for="checkbox-nascar">NASCAR</label>
+            
+            <input type="checkbox" name="checkbox-golf" id="checkbox-golf" class="custom" />
+            <label for="checkbox-golf">Golf</label>
+            
+            <input type="checkbox" name="checkbox-mma" id="checkbox-mma" class="custom" />
+            <label for="checkbox-mma">Mixed Martial Arts</label>
+            
+            <input type="checkbox" name="checkbox-box" id="checkbox-box" class="custom" />
+            <label for="checkbox-box">Boxing</label>
+            
+            <input type="checkbox" name="checkbox-ncaab" id="checkbox-ncaab" class="custom" />
+            <label for="checkbox-ncaab">NCAAB</label>
+            
+            <input type="checkbox" name="checkbox-ncaaw" id="checkbox-ncaaw" class="custom" />
+            <label for="checkbox-ncaaw">NCAAW</label>
+            
+            <input type="checkbox" name="checkbox-tennis" id="checkbox-tennis" class="custom" />
+            <label for="checkbox-tennis">Tennis</label>
+            
+            <input type="checkbox" name="checkbox-ncaabb" id="checkbox-ncaabb" class="custom" />
+            <label for="checkbox-ncaabb">NCAABB</label>
+            
+            <input type="checkbox" name="checkbox-wnba" id="checkbox-wnba" class="custom" />
+            <label for="checkbox-wnba">WNBA</label>
+            
+            <input type="checkbox" name="checkbox-ncaaf" id="checkbox-ncaaf" class="custom" />
+            <label for="checkbox-ncaaf">NCAAF</label>
+            
+            <input type="checkbox" name="checkbox-olympics" id="checkbox-olympics" class="custom" />
+            <label for="checkbox-olympics">Olympics</label>
+            
+            <input type="checkbox" name="checkbox-irl" id="checkbox-irl" class="custom" />
+            <label for="checkbox-irl">IRL</label>
+            
+            <input type="checkbox" name="checkbox-soccer" id="checkbox-soccer" class="custom" />
+            <label for="checkbox-soccer">World Soccer</label>
+            
+            <input type="checkbox" name="checkbox-mls" id="checkbox-mls" class="custom" />
+            <label for="checkbox-mls">MLS</label>
+            
+            <input type="checkbox" name="checkbox-ski" id="checkbox-ski" class="custom" />
+            <label for="checkbox-ski">Skiing</label>
+            
+            <input type="checkbox" name="checkbox-cycling" id="checkbox-cycling" class="custom" />
+            <label for="checkbox-cycling">Cycling</label>
+            
+            <input type="checkbox" name="checkbox-hr" id="checkbox-hr" class="custom" />
+            <label for="checkbox-hr">Horse Racing</label>
+            
+            </fieldset>
+          </div>
+
+        <div data-role="fieldcontain">
+          <label for="ftime">Feed update interval: (minutes)(requires restart)</label>
+          <input type="range" name="ftime" id="ftime" value="60" min="5" max="180" step="5">
+        </div>
+        
+        <div data-role="footer" data-position="fixed">
+          <div data-role="navbar">
+            <ul>
+              <div class="ui-block-a"><button type="submit" id="b-cancel" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete">Cancel</button></div>
+              <div class="ui-block-b"><button type="submit" id="b-submit" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check ui-btn-active ui-state-persist">Submit</button></div>
+            </ul>
+          </div>
+          <h4 style="display:none;">Footer</h4>
+        </div>
+        
+      </div>
+    </div>
+
+    <script>
+    
+    function getParameterByName(name) {
+    	name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+   		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	}
+
+        var allfeeds = [
+ 			["Top", "http://sports.yahoo.com/top/rss.xml", "#checkbox-top"],
+ 			["MLB", "http://sports.yahoo.com/mlb/rss.xml", "#checkbox-mlb"],
+ 			["NFL", "http://sports.yahoo.com/nfl/rss.xml", "#checkbox-nfl"],
+ 			["NBA", "http://sports.yahoo.com/nba/rss.xml", "#checkbox-nba"],
+			["NHL", "http://sports.yahoo.com/nhl/rss.xml", "#checkbox-nhl"],
+			["NASCAR", "http://sports.yahoo.com/nascar/rss.xml", "#checkbox-nascar"],
+			["Golf", "http://sports.yahoo.com/golf/rss.xml", "#checkbox-golf"],
+ 			["MMA", "http://sports.yahoo.com/mma/rss.xml", "#checkbox-mma"],
+ 			["Boxing", "http://sports.yahoo.com/box/rss.xml", "#checkbox-box"],
+ 			["NCAAB", "http://sports.yahoo.com/ncaab/rss.xml", "#checkbox-ncaab"],
+ 			["NCAAW", "http://sports.yahoo.com/ncaaw/rss.xml", "#checkbox-ncaaw"],
+ 			["Tennis", "http://sports.yahoo.com/ten/rss.xml", "#checkbox-tennis"],
+ 			["NCAABB", "http://sports.yahoo.com/ncaabb/rss.xml", "#checkbox-ncaabb"],
+ 			["WNBA", "http://sports.yahoo.com/wnba/rss.xml", "#checkbox-wnba"],
+ 			["NCAAF", "http://sports.yahoo.com/ncaaf/rss.xml", "#checkbox-ncaaf"],
+ 			["Olympics", "http://sports.yahoo.com/oly/rss.xml", "#checkbox-olympics"],
+ 			["IRL", "http://sports.yahoo.com/irl/rss.xml", "#checkbox-irl"],
+ 			["Soccer", "http://sports.yahoo.com/sow/rss.xml", "#checkbox-soccer"],
+ 			["MLS", "http://sports.yahoo.com/mls/rss.xml", "#checkbox-mls"],
+ 			["Skiing", "http://sports.yahoo.com/ski/rss.xml", "#checkbox-ski"],
+ 			["Cycling", "http://sports.yahoo.com/sc/rss.xml", "#checkbox-cycling"],
+ 			["Horse Racing", "http://sports.yahoo.com/rah/rss.xml", "#checkbox-hr"]
+ 		];
+ 		
+ 		var settings = getParameterByName("settings");
+ 		var fetchtime = getParameterByName("fetchtime");
+ 		
+ 		var userfeeds = settings.split(",");
+ 		for(var i=0; i<userfeeds.length; i++){
+ 		   for(var j=0; j<allfeeds.length; j++){
+ 		     if(userfeeds[i]===allfeeds[j][0]){
+ 			   $(allfeeds[j][2]).prop('checked', true);
+ 		     }
+ 		   }
+ 		}
+ 		 		
+      function saveOptions() {
+        mlocation = $("#ylocation").val();
+
+        var options = {
+          'Top': $("#checkbox-top").is(':checked'),
+          'MLB': $("#checkbox-mlb").is(':checked'),
+          'NFL': $("#checkbox-nfl").is(':checked'),
+          'NBA': $("#checkbox-nba").is(':checked'),
+          'NHL': $("#checkbox-nhl").is(':checked'),
+          'NASCAR': $("#checkbox-nascar").is(':checked'),
+          'Golf': $("#checkbox-golf").is(':checked'),
+          'MMA': $("#checkbox-mma").is(':checked'),
+          'Boxing': $("#checkbox-box").is(':checked'),
+          'NCAAB': $("#checkbox-ncaab").is(':checked'),
+          'NCAAW': $("#checkbox-ncaaw").is(':checked'),
+          'Tennis': $("#checkbox-tennis").is(':checked'),
+          'NCAABB': $("#checkbox-ncaabb").is(':checked'),
+          'WNBA': $("#checkbox-wnba").is(':checked'),
+          'NCAAF': $("#checkbox-ncaaf").is(':checked'),
+          'Olympics': $("#checkbox-olympics").is(':checked'),
+          'IRL': $("#checkbox-irl").is(':checked'),
+          'Soccer': $("#checkbox-soccer").is(':checked'),
+          'MLS': $("#checkbox-mls").is(':checked'),
+          'Skiing': $("#checkbox-ski").is(':checked'),
+          'Cycling': $("#checkbox-cycling").is(':checked'),
+          'Horse Racing': $("#checkbox-hr").is(':checked'),
+          'fetchtime': $("#ftime").val()
+        }
+        return options;
+        
+      }
+
+      $().ready(function() {
+        $("#b-cancel").click(function() {
+          console.log("Cancel");
+          document.location.href = "pebblejs://close#";
+        });
+        
+        $("#ftime").val(fetchtime).slider("refresh");
+
+        $("#b-submit").click(function() {
+          console.log("Submit");
+
+          var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(saveOptions()));
+          console.log("Warping to: " + location);
+          console.log(location);
+          document.location = location;
+        });
+
+      });
+   </script>
+  <br><br><br>
+ </body>
+</html>
